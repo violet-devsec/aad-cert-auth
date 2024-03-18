@@ -10,12 +10,8 @@ ClientId = os.environ["AZURE_CLIENT_ID"]
 KVUri = os.environ["KEY_VAULT_URI"]
 CertPath = "./kv-prv.pfx"
 
-print(TenantId)
-
 credential = CertificateCredential(tenant_id=TenantId, client_id=ClientId, certificate_path=CertPath, password="")
-
 kvClient = SecretClient(vault_url=KVUri, credential=credential)
-
 secret = kvClient.get_secret(os.environ["SECRET_NAME"]).value
 
 print(secret)
